@@ -19,15 +19,16 @@
     </header>
     <main>
       <section class="left">
-        <input type="number" class="guess" />
+        <input type="text" class="guess" />
         <button class="btn check">Check!</button>
       </section>
       <section class="right">
         <p class="message">Start guessing...</p>
-        <p class="label-score">💯 Your Score: <span class="score">20</span></p>
+        <p class="label-score">💯 Your Score: <span class="score">100</span></p>
         <p class="label-highscore">
           🥇 Highscore: <span class="highscore">0</span>
         </p>
+        <p class="missing-letters"></p>
       </section>
     </main>
     <script>
@@ -35,7 +36,7 @@
       const secretCode = 'orelso'
       
       window.addEventListener('keyup', (e) => {
-          console.log("There's a secret code that can give you unicorns. Can you guess the name of the coder ?", e.key)
+          // console.log("There's a secret code that can give you unicorns. Can you guess the name of the coder ?", e.key)
           pressed.push(e.key)
           pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
           if(pressed.join('').includes(secretCode)) {
@@ -43,7 +44,7 @@
               cornify_add()
               // document.querySelector('.number').textContent = 'ORELSO';
           }
-          console.log(pressed);
+          // console.log(pressed);
       })
     </script>
     <script src="index.js"></script>

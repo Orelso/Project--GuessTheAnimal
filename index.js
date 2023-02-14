@@ -1,19 +1,22 @@
 "use strict";
 
 let animals = [
-  { name: "Aardvark", category: "Mammal" },
-  { name: "Albatross", category: "Bird" },
-  { name: "Alligator", category: "Reptile" },
-  { name: "Alpaca", category: "Mammal" },
-  { name: "Ant", category: "Insect" },
-  { name: "Anteater", category: "Mammal" },
-  { name: "Antelope", category: "Mammal" },
-  { name: "Ape", category: "Mammal" },
-];
+    { name: "dog", emoji: "🐶", species: "Mammal" },
+    { name: "cat", emoji: "🐱", species: "Mammal" },
+    { name: "mouse", emoji: "🐭", species: "Mammal" },
+    { name: "squid", emoji: "🦑", species: "Cephalopoda" },
+    { name: "frog", emoji: "🐸", species: "Amphibians" },
+    { name: "fox", emoji: "🦊", species: "Mammal" },
+    { name: "cow", emoji: "🐄", species: "Mammal" },
+    { name: "bee", emoji: "🐝", species: "Insect" },
+    { name: "dinosaur", emoji: "🦕", species: "Mammal" },
+    { name: "fish", emoji: "🐟", species: "Fish" },
+  ];
 
 const secretAnimal = animals[Math.floor(Math.random() * animals.length)].name;
 let score = 100;
 let highScore = 0;
+let incorrectGuesses = 0;
 document.querySelector(".animal").textContent = secretAnimal;
 
 /*˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯*/
@@ -42,13 +45,16 @@ document.querySelector(".check").addEventListener("click", function () {
     //     document.querySelector('.highscore').textContent = highScore;
     // }
   } else if (guess !== secretAnimal) {
-    if (score > 1) {
-      document.querySelector(".message").textContent =
-        guess !== secretAnimal
-          ? "That number is too high 🔋"
-          : "That number is too low 🪫";
-      score--;
-      document.querySelector(".score").textContent = score;
+    if (guess !== secretAnimal) {
+      incorrectGuesses++;
+      if (incorrectGuesses === 1) {
+        const secretAnimalObj = animals.find((animal) => animal.name === secretAnimal);
+        const secretAnimalCategory = secretAnimalObj.emoji;
+        const secretAnimalSpecies = secretAnimalObj.species;
+        document.querySelector(".message").textContent = `<span style="color: red;">That's not the right animal!</span> 🐾  It's also a ${secretAnimalSpecies}`;      
+        score--;
+        document.querySelector(".score").textContent = score;
+    } 
     } else {
       document.querySelector(".number").style.width = "70rem";
       document.querySelector(".number").textContent = "GAME OVER!";

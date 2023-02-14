@@ -5,7 +5,7 @@ let animals = [
     { name: "cat", emoji: "🐱", species: "Mammal" },
     { name: "mouse", emoji: "🐭", species: "Mammal" },
     { name: "squid", emoji: "🦑", species: "Cephalopoda" },
-    { name: "frog", emoji: "🐸", species: "Amphibians" },
+    { name: "frog", emoji: "🐸", species: "Amphibian" },
     { name: "fox", emoji: "🦊", species: "Mammal" },
     { name: "cow", emoji: "🐄", species: "Mammal" },
     { name: "bee", emoji: "🐝", species: "Insect" },
@@ -16,7 +16,6 @@ let animals = [
 const secretAnimal = animals[Math.floor(Math.random() * animals.length)].name;
 let score = 100;
 let highScore = 0;
-let incorrectGuesses = 0;
 document.querySelector(".animal").textContent = secretAnimal;
 
 /*˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯*/
@@ -46,12 +45,11 @@ document.querySelector(".check").addEventListener("click", function () {
     // }
   } else if (guess !== secretAnimal) {
     if (guess !== secretAnimal) {
-      incorrectGuesses++;
-      if (incorrectGuesses === 1) {
+      if (score > 1) {
         const secretAnimalObj = animals.find((animal) => animal.name === secretAnimal);
         const secretAnimalCategory = secretAnimalObj.emoji;
         const secretAnimalSpecies = secretAnimalObj.species;
-        document.querySelector(".message").textContent = `<span style="color: red;">That's not the right animal!</span> 🐾  It's also a ${secretAnimalSpecies}`;      
+        document.querySelector(".message").innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>. Maybe this emoji can help    <span onmouseover="this.style.fontSize='40px';" onmouseout="this.style.fontSize='25px';">${secretAnimalCategory}</span>`;      
         score--;
         document.querySelector(".score").textContent = score;
     } 

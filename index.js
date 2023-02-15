@@ -13,19 +13,20 @@ let animals = [
   { name: "fish", emoji: "🐟", species: "Fish" },
 ];
 
-const secretAnimal = animals[Math.floor(Math.random() * animals.length)].name;
+
+let secretAnimalObject = animals[Math.floor(Math.random() * animals.length)];
+let secretAnimal = secretAnimalObject.name + " " + secretAnimalObject.emoji;
 let score = 10;
 let highScore = 0;
-// document.querySelector(".animal").textContent = secretAnimal;
+document.querySelector(".animal").textContent = secretAnimalObject.emoji
 
 /*˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯˯*/
 document.querySelector(".check").addEventListener("click", function () {
-  const guess = document.querySelector(".guess").value;
+  const guess = document.querySelector(".guess").value.toLowerCase();
   // When there is no input
   if (!guess) {
     if (score > 1) {
-      document.querySelector(".message").textContent =
-        "You need to type something";
+      document.querySelector(".message").textContent = "You need to type something";
       score--;
       document.querySelector(".score").textContent = score;
     } else {
@@ -33,11 +34,11 @@ document.querySelector(".check").addEventListener("click", function () {
       score = 0;
     }
     // When the player wins
-  } else if (guess === secretAnimal) {
+  } else if (guess === secretAnimalObject.name) {
     document.querySelector(".message").textContent = "You got it dude 👍";
-    document.querySelector("body").style.backgrousndColor = "green"; //1 When the player wins the game, the background color changes
-    document.querySelector(".animal").textContent = "GAME OVER! You win🏆";
-    document.querySelector(".animal").textContent = secretAnimal;
+    document.querySelector("body").style.backgroundColor = "green"; 
+    document.querySelector(".animal").textContent = secretAnimal.slice(0,1).toUpperCase() + secretAnimal.slice(1).toLowerCase();
+    document.querySelector(".header").textContent = "Game Over! You win 🏆";
     // Add Highscore
     if(score > highScore) {
         highScore = score
@@ -46,10 +47,9 @@ document.querySelector(".check").addEventListener("click", function () {
     // When the guess is wrong
   } else if (guess !== secretAnimal) {
       if (score > 1) {
-        const secretAnimalObj = animals.find((animal) => animal.name === secretAnimal);
-        const secretAnimalCategory = secretAnimalObj.emoji;
+        const secretAnimalObj = animals.find((animal) => animal.name === secretAnimalObject.name);
         const secretAnimalSpecies = secretAnimalObj.species;
-        document.querySelector(".message").innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>. Maybe this emoji can help    <span onmouseover="this.style.fontSize='40px';" onmouseout="this.style.fontSize='25px';">${secretAnimalCategory}</span>`;
+        document.querySelector(".message").innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>.`;
         score--;
         document.querySelector(".score").textContent = score;
       }
@@ -62,6 +62,20 @@ document.querySelector(".check").addEventListener("click", function () {
     }
   }
 });
+/* -------------------------------------------------------------------------------------------------------------------------------------------(Restart the game)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+document.querySelector('.again').addEventListener('click', function () { 
+    score = 20;
+    secretAnimalObject = animals[Math.floor(Math.random() * animals.length)];    
+    document.querySelector('.message').textContent = 'Start guessing ...';
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.animal').textContent = '?';
+    document.querySelector('.guess').value = null;
+    document.querySelector('.animal').style.width = '';
+    document.querySelector('body').style.backgroundColor = '';
+  });
+
+
+/*˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰*/
 
 document.querySelector(".guess").addEventListener("keyup", function (event) {
   if (event.key === "Enter" || event.key === "Return") {

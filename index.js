@@ -47,7 +47,7 @@ document.querySelector(".check").addEventListener("click", function () {
     // When the guess is wrong
   } else if (guess !== secretAnimal) {
       if (score > 1) {
-        const secretAnimalObj = animals.find((animal) => animal.name === secretAnimalObject.name);
+        secretAnimalObject
         const secretAnimalSpecies = secretAnimalObj.species;
         document.querySelector(".message").innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>.`;
         score--;
@@ -64,19 +64,16 @@ document.querySelector(".check").addEventListener("click", function () {
 });
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Restart the game)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 document.querySelector('.again').addEventListener('click', function () { 
-    score = 20;
-    secretAnimalObject = animals[Math.floor(Math.random() * animals.length)];    
+    secretAnimalObject
+    secretAnimal
+    document.querySelector(".animal").textContent = secretAnimalObject.emoji
     document.querySelector('.message').textContent = 'Start guessing ...';
     document.querySelector('.score').textContent = score;
-    document.querySelector('.animal').textContent = '?';
-    document.querySelector('.guess').value = null;
+    document.querySelector('.guess').value.toLowerCase = "";
     document.querySelector('.animal').style.width = '';
     document.querySelector('body').style.backgroundColor = '';
   });
-
-
 /*˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰*/
-
 document.querySelector(".guess").addEventListener("keyup", function (event) {
   if (event.key === "Enter" || event.key === "Return") {
     document.querySelector(".check").click();

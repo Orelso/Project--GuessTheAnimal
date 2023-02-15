@@ -74,11 +74,10 @@ document.querySelector(".check").addEventListener("click", function () {
       score = 0;
     } */
     // When the player wins
-  } else if (guess === secretAnimalObject.name) {
+  } else if (guess.trim().toLowerCase() === secretAnimalObject.name.trim().toLowerCase()) {
     if (!alreadyWon) {
         score++;
         document.querySelector(".score").textContent = score;
-        alreadyWon = true;
 
       }
 

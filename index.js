@@ -75,8 +75,13 @@ document.querySelector(".check").addEventListener("click", function () {
     } */
     // When the player wins
   } else if (guess === secretAnimalObject.name) {
-    score++
-    document.querySelector(".score").textContent = score;
+    if (!alreadyWon) {
+        score++;
+        document.querySelector(".score").textContent = score;
+        alreadyWon = true;
+
+      }
+
     document.querySelector(".message").textContent = "You got it dude 👍";
     document.querySelector("body").style.backgroundColor = "green"; 
     document.querySelector(".animal").textContent = secretAnimalObject.name.slice(0,1).toUpperCase() + secretAnimalObject.name.slice(1).toLowerCase() + secretAnimalObject.emoji
@@ -110,9 +115,12 @@ document.querySelector('.again').addEventListener('click', function () {
     document.querySelector(".animal").textContent = secretAnimalObject.emoji + secretAnimalObject.name 
     document.querySelector('.message').textContent = 'Start guessing ...';
     document.querySelector('.score').textContent = score;
-    document.querySelector('.guess').value = null;
+    document.querySelector('.guess').value = "";
     document.querySelector('.animal').style.width = '';
     document.querySelector('body').style.backgroundColor = "#0F1626";
+    alreadyWon 
+
+
   });
 /*˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰*/
 document.querySelector(".guess").addEventListener("keyup", function (event) {

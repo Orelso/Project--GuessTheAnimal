@@ -34,7 +34,6 @@ let animals = [
   { name: "gorilla", emoji: "🦍", species: "Mammal" },
   { name: "zebra", emoji: "🦓", species: "Mammal" },
   { name: "Sloth", emoji: "🦥", species: "Mammal" },
-  { name: "Armadillo", emoji: "🦨", species: "Mammal" },
   { name: "Badger", emoji: "🦡", species: "Mammal" },
   { name: "Beaver", emoji: "🦫", species: "Mammal" },
   { name: "Raccoon", emoji: "🦝", species: "Mammal" },
@@ -79,6 +78,7 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".message").textContent = "You got it dude 👍.";
     document.querySelector(".play-again").textContent = "Click the Play again button for more points! or press 1";
     document.querySelector("body").style.backgroundColor = "green";
+    document.querySelector(".animal").style.width = "62rem";
     document.querySelector(".animal").textContent = secretAnimalObject.name.slice(0, 1).toUpperCase() + secretAnimalObject.name.slice(1).toLowerCase() + secretAnimalObject.emoji;
     document.querySelector(".header").textContent = "Game Over! You win 🏆";
     // When the guess is wrong
@@ -106,6 +106,8 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".guess").value = "";
   document.querySelector(".animal").style.width = "";
   document.querySelector("body").style.backgroundColor = "#0F1626";
+  document.querySelector(".play-again").textContent = "";
+
   alreadyWon;
 });
 /*˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰*/

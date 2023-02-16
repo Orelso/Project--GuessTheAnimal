@@ -76,7 +76,8 @@ document.querySelector(".check").addEventListener("click", function () {
       score++;
       document.querySelector(".score").textContent = score;
     }
-    document.querySelector(".message").textContent = "You got it dude 👍. Play again for more points or press 1";
+    document.querySelector(".message").textContent = "You got it dude 👍.";
+    document.querySelector(".play-again").textContent = "Click the Play again button for more points! or press 1";
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".animal").textContent = secretAnimalObject.name.slice(0, 1).toUpperCase() + secretAnimalObject.name.slice(1).toLowerCase() + secretAnimalObject.emoji;
     document.querySelector(".header").textContent = "Game Over! You win 🏆";
@@ -85,9 +86,7 @@ document.querySelector(".check").addEventListener("click", function () {
     if (guess !== secretAnimalObject.name) {
       secretAnimalObject;
       const secretAnimalSpecies = secretAnimalObject.species;
-      document.querySelector(
-        ".message"
-      ).innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>.`;
+      document.querySelector(".message").innerHTML = `<span style="color: red;font-size: 25px;">Here's a hint</span> 🐾 <br> It's animal group is <span style="color: red;">${secretAnimalSpecies}</span>.`;
       score--;
       document.querySelector(".score").textContent = score;
     } else {
@@ -101,8 +100,7 @@ document.querySelector(".check").addEventListener("click", function () {
 /* -------------------------------------------------------------------------------------------------------------------------------------------(Restart the game)------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 document.querySelector(".again").addEventListener("click", function () {
   secretAnimalObject = animals[Math.floor(Math.random() * animals.length)];
-  document.querySelector(".animal").textContent =
-    secretAnimalObject.emoji + secretAnimalObject.name;
+  document.querySelector(".animal").textContent = secretAnimalObject.emoji 
   document.querySelector(".message").textContent = "Start guessing ...";
   document.querySelector(".score").textContent = score;
   document.querySelector(".guess").value = "";
